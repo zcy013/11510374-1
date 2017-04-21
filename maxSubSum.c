@@ -1,11 +1,11 @@
-//11510374 ÖÜå·Óî
+//11510374 å‘¨å®¸å®‡
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#define NUM 10000 // Ëæ»úÊı¸öÊı
-#define SCALE 40 // Ëæ»úÊı·¶Î§
-#define FILELOC "R:\\maxSubSum.txt" // Ëæ»úÉú³ÉµÄÊı×é
+#define NUM 10000 // éšæœºæ•°ä¸ªæ•°
+#define SCALE 40 // éšæœºæ•°èŒƒå›´
+#define FILELOC "R:\\maxSubSum.txt" // éšæœºç”Ÿæˆçš„æ•°ç»„
 
 int divAndCon(int arr[], int start, int end);
 int dyn(int arr[], int number);
@@ -40,34 +40,34 @@ int main(void)
     return 0;
 }
 
-int divAndCon(int arr[], int start, int end)// ·ÖÖÎ·¨
+int divAndCon(int arr[], int start, int end)// åˆ†æ²»æ³•
 {
     if(start == end)
         return arr[start] > 0 ? arr[start] : 0;
     else
     {
         int mid = start + (end - start)/ 2;
-        int leftMax = divAndCon(arr, start, mid);// ×ó×Ó¶Î×î´óºÍ
-        int rightMax = divAndCon(arr, mid+1, end);// ÓÒ×Ó¶Î×î´óºÍ
+        int leftMax = divAndCon(arr, start, mid);// å·¦å­æ®µæœ€å¤§å’Œ
+        int rightMax = divAndCon(arr, mid+1, end);// å³å­æ®µæœ€å¤§å’Œ
         int sum, midMax, midLeft, midRight, i;
-        for(i = mid, sum = 0, midLeft = 0; i>= start; --i)// °üº¬×óÖĞµãµÄ×ó×Ó¶Î×î´óºÍ
+        for(i = mid, sum = 0, midLeft = 0; i>= start; --i)// åŒ…å«å·¦ä¸­ç‚¹çš„å·¦å­æ®µæœ€å¤§å’Œ
         {
             sum += arr[i];
             if(sum > midLeft)
                 midLeft = sum;
         }
-        for(i = mid+1, sum = 0, midRight = 0; i <= end; ++i)// °üº¬ÓÒÖĞµãµÄÓÒ×Ó¶Î×î´óºÍ
+        for(i = mid+1, sum = 0, midRight = 0; i <= end; ++i)// åŒ…å«å³ä¸­ç‚¹çš„å³å­æ®µæœ€å¤§å’Œ
         {
             sum += arr[i];
             if(sum > midRight)
                 midRight = sum;
         }
-        midMax = midLeft + midRight;// °üº¬ÖĞµãµÄ×î´ó×Ó¶ÎºÍ
+        midMax = midLeft + midRight;// åŒ…å«ä¸­ç‚¹çš„æœ€å¤§å­æ®µå’Œ
         return max3(leftMax, midMax, rightMax);
     }
 }
 
-int dyn(int arr[], int number)// ¶¯Ì¬¹æ»®·¨
+int dyn(int arr[], int number)// åŠ¨æ€è§„åˆ’æ³•
 {
     int sum, b, i;
     for(i = 0, b = 0, sum = 0; i < number; ++i)
@@ -81,7 +81,7 @@ int dyn(int arr[], int number)// ¶¯Ì¬¹æ»®·¨
     return sum;
 }
 
-int max3(int a, int b, int c)// ·µ»ØÈı¸öÊıÖĞ×î´óÖµ
+int max3(int a, int b, int c)// è¿”å›ä¸‰ä¸ªæ•°ä¸­æœ€å¤§å€¼
 {
     if(a >= b)
     {
@@ -94,7 +94,7 @@ int max3(int a, int b, int c)// ·µ»ØÈı¸öÊıÖĞ×î´óÖµ
     return c;
 }
 
-void rand_arr(int arr[], int n)// Ëæ»úÉú³ÉÊı×é
+void rand_arr(int arr[], int n)// éšæœºç”Ÿæˆæ•°ç»„
 {
     srand(time(NULL));
     int i;
@@ -102,7 +102,7 @@ void rand_arr(int arr[], int n)// Ëæ»úÉú³ÉÊı×é
         arr[i] = rand() % SCALE - SCALE / 2;
 }
 
-void print_arr(int arr[], int n)// ´òÓ¡Êı×é
+void print_arr(int arr[], int n)// æ‰“å°æ•°ç»„
 {
     int i;
     for(i = 0; i < n; ++i)
